@@ -87,10 +87,18 @@ async function createEmployee() {
 
     switch (employeeRole.empRole) {
         case 'Engineer':
-            console.log("Thanks! We've added a new engineer to the team: ");
+            let engResponses = await inquirer.prompt(questions.engineer);
+            let newEngineer = new Engineer
+                (engResponses.engName,
+                    engResponses.engId,
+                    engResponses.engEmail,
+                    engResponses.engGithub);
+            employees.push(newEngineer);
+            console.log("Added a new engineer to the team: ", newEngineer);
+            await confirmEmployee();
             break;
         case 'Intern':
-            console.log("Thanks! We've added a new intern to the team: ");
+            console.log("Added a new intern to the team: ");
     };
 
 };

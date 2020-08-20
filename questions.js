@@ -62,10 +62,57 @@ const employeeType = [
     }
 ];
 
+const engineerQuestions = [
+    {
+        type: 'input',
+        message: "What is your software engineer's name?",
+        name: 'engName',
+        validate: function (answer) {
+            if (answer.length < 1) {
+                return console.log("A valid name is required.");
+            }
+            return true;
+        }
+    },
+    {
+        type: 'input',
+        message: "What is your engineer's employee ID?",
+        name: 'engId',
+        validate: function (answer) {
+            if (answer <= 0) {
+                return console.log("A valid employee ID is required.");
+            }
+            return true;
+        }
+    },
+    {
+        type: 'input',
+        message: "What is your engineer's email address?",
+        name: 'engEmail',
+        validate: function (answer) {
+            if (answer.length < 1) {
+                return console.log("A valid email address is required.");
+            }
+            return true;
+        }
+    },
+    {
+        type: 'input',
+        message: "What is your engineer's GitHub? (No @ needed)",
+        name: 'engGithub',
+        validate: function (answer) {
+            if (answer.length < 1) {
+                return console.log("A valid GitHub is required.");
+            }
+            return true;
+        }
+    }
+];
 
 module.exports = {
     manager: managerQuestions,
     create: confirmEmployee,
     employee: employeeType,
+    engineer: engineerQuestions
 };
 
