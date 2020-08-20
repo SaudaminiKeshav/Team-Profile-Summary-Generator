@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+const outputPath = path.join(OUTPUT_DIR, "manager.html");
 
 const render = require("./lib/htmlRenderer");
 
@@ -22,8 +22,6 @@ const employees = [];
 async function createManager() {
     await inquirer.prompt(questions.manager)
         .then((answers) => {
-            console.log(answers);
-
             // Create new object from class and add to employee array
             let newManager = new Manager
                 (answers.managerName,
@@ -32,8 +30,9 @@ async function createManager() {
                     answers.managerOfficeNumber);
 
             employees.push(newManager);
-
-            console.log("Manager information added to the team: ", newManager);
+            let renderedHTML = render(employees);
+            fs.writeFileSync(outputPath, renderedHTML);
+            console.log("Manager information added to the team: \n ", newManager);
         })
         .catch(function (err) {
             console.log(err);
@@ -46,12 +45,12 @@ async function createManager() {
 // generate and return a block of HTML including templated divs for each employee!
 
 async function init() {
-    await createManager();
-    let renderedHTML = render(employees);
-    fs.writeFileSync(outputPath, renderedHTML);
+    await createManager()
+    await confirmEmployee()
 }
 
 init()
+
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
 // `output` folder. You can use the variable `outputPath` above target this location.
@@ -61,6 +60,21 @@ init()
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
 // employee type.
+
+
+// Function to ask if they'd like to create a new team member
+async function confirmEmployee() {
+
+    // Would you like to add another team member?
+    let confirmEmployee = await inquirer.prompt(questions.create);
+
+    switch (confirmEmployee.confirmEmp) {
+        case false:
+            console.log("Employee summary: ", employees);
+            return;
+
+    };
+};
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
 // and Intern classes should all extend from a class named Employee; see the directions

@@ -45,6 +45,17 @@ const managerQuestions = [
     },
 ];
 
+const confirmEmployee = [
+    {
+        type: 'confirm',
+        message: "Next, would you like to add another team member to the team?",
+        name: 'confirmEmp'
+    }
+];
+
+
 module.exports = {
-    manager: managerQuestions
+    manager: managerQuestions,
+    create: confirmEmployee
 };
+
