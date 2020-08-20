@@ -45,8 +45,12 @@ async function createManager() {
 // generate and return a block of HTML including templated divs for each employee!
 
 async function init() {
+    try {
     await createManager()
     await confirmEmployee()
+} catch (error) {
+    console.log(error);
+};
 }
 
 init()
@@ -70,7 +74,7 @@ async function confirmEmployee() {
 
     switch (confirmEmployee.confirmEmp) {
         case false:
-            console.log("Thank you for your input so far. Here are your team members: ", employees);
+            console.log("Thank you for your input. Here are the team members: ", employees);
             console.log('Generating your HTML page next...');
             return;
 
@@ -95,7 +99,7 @@ async function createEmployee() {
                     engResponses.engGithub);
             employees.push(newEngineer);
             console.log("Added a new engineer to the team: ", newEngineer);
-            await confirmEmployee();
+            await createEmployee();
             break;
         case 'Intern':
             let internResponses = await inquirer.prompt(questions.intern);
@@ -106,7 +110,7 @@ async function createEmployee() {
                     internResponses.internSchool);
             employees.push(newIntern);
             console.log("Added a new intern to the team: ", newIntern);
-            await confirmEmployee();
+            await createEmployee();
     };
 
 };
