@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "manager.html");
+const outputPath = path.join(OUTPUT_DIR, "main.html");
 
 const render = require("./lib/htmlRenderer");
 
@@ -15,23 +15,21 @@ const questions = require('./questions');
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
-// Array to contain all employee objects to render HTML
+// Array to contain all employee objects
 const employees = [];
 
-// Function to create a manager object
 async function createManager() {
     await inquirer.prompt(questions.manager)
         .then((answers) => {
-            // Create new object from class and add to employee array
             let newManager = new Manager
-                (answers.managerName,
+                (
+                    answers.managerName,
                     answers.managerID,
                     answers.managerEmail,
-                    answers.managerOfficeNumber);
+                    answers.managerOfficeNumber
+                );
 
             employees.push(newManager);
-            let renderedHTML = render(employees);
-            fs.writeFileSync(outputPath, renderedHTML);
             console.log("Manager information added to the team: \n ", newManager);
         })
         .catch(function (err) {
@@ -46,11 +44,11 @@ async function createManager() {
 
 async function init() {
     try {
-    await createManager()
-    await confirmEmployee()
-} catch (error) {
-    console.log(error);
-};
+        await createManager()
+        await confirmEmployee()
+    } catch (error) {
+        console.log(error);
+    };
 }
 
 init()
@@ -75,6 +73,8 @@ async function confirmEmployee() {
     switch (confirmEmployee.confirmEmp) {
         case false:
             console.log("Thank you for your input. Here are the team members: ", employees);
+            let renderedHTML = render(employees);
+            fs.writeFileSync(outputPath, renderedHTML);
             console.log('Generating your HTML page next...');
             return;
 
@@ -93,24 +93,28 @@ async function createEmployee() {
         case 'Engineer':
             let engResponses = await inquirer.prompt(questions.engineer);
             let newEngineer = new Engineer
-                (engResponses.engName,
+                (
+                    engResponses.engName,
                     engResponses.engId,
                     engResponses.engEmail,
-                    engResponses.engGithub);
+                    engResponses.engGithub
+                    );
             employees.push(newEngineer);
             console.log("Added a new engineer to the team: ", newEngineer);
-            await createEmployee();
+            await confirmEmployee();
             break;
         case 'Intern':
             let internResponses = await inquirer.prompt(questions.intern);
             let newIntern = new Intern
-                (internResponses.internName,
+                (
+                    internResponses.internName,
                     internResponses.internId,
                     internResponses.internEmail,
-                    internResponses.internSchool);
+                    internResponses.internSchool
+                    );
             employees.push(newIntern);
             console.log("Added a new intern to the team: ", newIntern);
-            await createEmployee();
+            await confirmEmployee();
     };
 
 };
