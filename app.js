@@ -70,10 +70,29 @@ async function confirmEmployee() {
 
     switch (confirmEmployee.confirmEmp) {
         case false:
-            console.log("Employee summary: ", employees);
+            console.log("Thank you for your input so far. Here are your team members: ", employees);
+            console.log('Generating your HTML page next...');
             return;
 
+        // If yes, they'd like to add another team member, ask whether they'd like to create an Engineer or Intern
+        case true:
+            await createEmployee();
     };
+};
+
+// Function to create Engineer or Intern
+async function createEmployee() {
+
+    let employeeRole = await inquirer.prompt(questions.employee);
+
+    switch (employeeRole.empRole) {
+        case 'Engineer':
+            console.log("Thanks! We've added a new engineer to the team: ");
+            break;
+        case 'Intern':
+            console.log("Thanks! We've added a new intern to the team: ");
+    };
+
 };
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
