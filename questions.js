@@ -68,8 +68,8 @@ const engineerQuestions = [
         message: "What is your software engineer's name?",
         name: 'engName',
         validate: function (answer) {
-            if (answer.length < 1) {
-                return console.log("A valid name is required.");
+            if (answer.length === 0) {
+                return console.log("Please enter a valid input");
             }
             return true;
         }
@@ -79,8 +79,8 @@ const engineerQuestions = [
         message: "What is your engineer's employee ID?",
         name: 'engId',
         validate: function (answer) {
-            if (answer <= 0) {
-                return console.log("A valid employee ID is required.");
+            if (answer.length === 0) {
+                return console.log("Please enter a valid input");
             }
             return true;
         }
@@ -89,9 +89,9 @@ const engineerQuestions = [
         type: 'input',
         message: "What is your engineer's email address?",
         name: 'engEmail',
-        validate: function (answer) {
-            if (answer.length < 1) {
-                return console.log("A valid email address is required.");
+        validate:  function (answer) {
+            if (answer.length === 0) {
+                return console.log("Please enter a valid input");
             }
             return true;
         }
@@ -100,9 +100,56 @@ const engineerQuestions = [
         type: 'input',
         message: "What is your engineer's GitHub? (No @ needed)",
         name: 'engGithub',
-        validate: function (answer) {
-            if (answer.length < 1) {
-                return console.log("A valid GitHub is required.");
+        validate:  function (answer) {
+            if (answer.length === 0) {
+                return console.log("Please enter a valid input");
+            }
+            return true;
+        }
+    }
+];
+
+const internQuestions = [
+    {
+        type: 'input',
+        message: "What is your intern's name?",
+        name: 'internName',
+        validate:  function (answer) {
+            if (answer.length === 0) {
+                return console.log("Please enter a valid input");
+            }
+            return true;
+        }
+    },
+    {
+        type: 'input',
+        message: "What is your intern's employee ID?",
+        name: 'internId',
+        validate:  function (answer) {
+            if (answer.length === 0) {
+                return console.log("Please enter a valid input");
+            }
+            return true;
+        }
+    },
+    {
+        type: 'input',
+        message: "What is your intern's email address?",
+        name: 'internEmail',
+        validate:   function (answer) {
+            if (answer.length === 0) {
+                return console.log("Please enter a valid input");
+            }
+            return true;
+        }
+    },
+    {
+        type: 'input',
+        message: "What is the name of your intern's university?",
+        name: 'internSchool',
+        validate:  function (answer) {
+            if (answer.length === 0) {
+                return console.log("Please enter a valid input");
             }
             return true;
         }
@@ -113,6 +160,7 @@ module.exports = {
     manager: managerQuestions,
     create: confirmEmployee,
     employee: employeeType,
-    engineer: engineerQuestions
+    engineer: engineerQuestions,
+    intern: internQuestions
 };
 

@@ -98,7 +98,15 @@ async function createEmployee() {
             await confirmEmployee();
             break;
         case 'Intern':
-            console.log("Added a new intern to the team: ");
+            let internResponses = await inquirer.prompt(questions.intern);
+            let newIntern = new Intern
+                (internResponses.internName,
+                    internResponses.internId,
+                    internResponses.internEmail,
+                    internResponses.internSchool);
+            employees.push(newIntern);
+            console.log("Added a new intern to the team: ", newIntern);
+            await confirmEmployee();
     };
 
 };
