@@ -23,11 +23,6 @@ How do you deliver this? Here are some guidelines:
 
 ## Below is an example of what the application looks like and also the GIF of how thw CLI application can be used to generate the below webpage.
 
-Please click on the below link to checkout the webpage
-
-https://saudaminikeshav.github.io/Team-Profile-Summary-Generator/
-
-
 ![Employee Summary 1](Assets/Capture.PNG)
 
 ![Employee Summary GIF](Assets/team-generator-gif.gif)
