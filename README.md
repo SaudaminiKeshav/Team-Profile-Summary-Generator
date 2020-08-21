@@ -21,10 +21,11 @@ How do you deliver this? Here are some guidelines:
 
 * Your app will run as a Node CLI to gather information about each employee.
 
-* Below is an example of what your application may look like. Remember, the styling is completely up to you so try to make it unique.
+* Below is an example of what the application looks like and also the GIF of how thw CLI application can be used to generate the below webpage.
 
-![Employee Summary 1](./Assets/10-OOP-homework-demo-1.png)
-![Employee Summary 2](./Assets/10-OOP-homework-demo-2.png)
+![Employee Summary 1](Assets/Capture.PNG)
+
+![Employee Summary GIF](Assets/team-generator-gif.gif)
 
 In the `Develop` folder, there is a `package.json`, so make sure to `npm install`.
 
@@ -175,3 +176,4 @@ You are required to submit the following:
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+
